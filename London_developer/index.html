@@ -1,0 +1,27 @@
+<script src="https://cdn.webrtc-experiment.com:443/rmc3.min.js"></script>
+<script src="https://cdn.webrtc-experiment.com:443/socket.io.js"></script>
+
+<button id="btn-open-or-join-room">
+    Open Or Join Room
+</button>
+
+<hr>
+
+<script>
+    var connection = new RTCMultiConnection()
+    connection.session = {
+        audio: true,
+        video: true
+    };
+
+    connection.sdpConstraints.mandatory = {
+       OfferToReceiveAudio: true,
+       OfferToReceiveVideo: true 
+    };
+
+    document.getElementById("btn-open-or-join-room").onclick = function() {
+        this.disable = true;
+
+        connection.openOrJoin('predefined-roomid')
+    }
+</script>
